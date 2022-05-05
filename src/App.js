@@ -16,16 +16,36 @@ const App = () => {
   const [country, setCountry] = useState(null)
   const [description, setDescription] = useState(null)
   const [speed, setSpeed] = useState(null)
+  const [date, setDate] = useState(null)
   const [location, setLocation] = useState("")
   const [dataFetched, setDataFetched] = useState(false)
 
 
+
+
+  
+  const getTime = (offset) => {
+
+    let d = new Date();
+
+    let utc = d.getTime() + (d.getTimezoneOffset() * 6000);
+
+    let nd = new Date(utc + (3600*offset));
+
+    setDate(nd.toLocaleString()) 
+
+}
+
+
   const fetchData = async (e) => {
+
     e.preventDefault()
     try{
       const res = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${process.env.REACT_APP_API_KEY}&units=metric`)
       const data = await res.data
-  
+      
+      getTime(data.timezone)
+
       setFeels(data.main.feels_like)
       setHum(data.main.humidity)
       setMax(data.main.temp_max)
@@ -52,6 +72,8 @@ const App = () => {
       const res = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=accra&appid=${process.env.REACT_APP_API_KEY}&units=metric`)
       const data = await res.data
   
+      getTime(data.timezone)
+      
       setFeels(data.main.feels_like)
       setHum(data.main.humidity)
       setMax(data.main.temp_max)
@@ -68,7 +90,7 @@ const App = () => {
 
   useEffect(() => {
     fetchDefaultData()
-  }, [])
+  })
 
   return (
     <div className="w-screen min-h-screen overflow-x-hidden"
@@ -81,6 +103,7 @@ const App = () => {
             city={city}
             summery={summery}
             icon={icon}
+            date={date}
            />
 
           <Right 
