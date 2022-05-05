@@ -1,6 +1,6 @@
 import React from "react";
 
-const Left = ({temp, city, summery, icon}) => {
+const Left = ({temp, city, summery, icon, date}) => {
 	return (
 		<div
 			className="w-2/3 h-full"
@@ -17,7 +17,7 @@ const Left = ({temp, city, summery, icon}) => {
 
 					<span className="flex flex-col">
 						<h2 className="text-[3.5rem] font-normal">{city}</h2>
-						<p className="text-sm ">06:09 - Monday, 9 Sep '19</p>
+						<p className="text-sm ">{date}</p>
 					</span>
 
 					<span className="flex flex-col items-center mt-7">
