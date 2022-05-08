@@ -1,5 +1,8 @@
 # Getting Started with Create React App
 
+# School group project
+Deployed on Vercel [here](https://weather-app-group.vercel.app)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
